@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Bar Graph</title>
+<!-- Removing credits from the plot -->
+<style>
+.highcharts-credits{visibility:hidden !important;}
+</style>
+</head>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<!-- <script src="https://code.highcharts.com/themes/dark-unica.js"></script> -->
+<script  type="text/javascript" src="../js/themes/dark-blue.js"></script>
+<div id="container" style="width:80%; height:400px;"></div>
+
+<script th:inline="javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    var myChart = Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        
+        title: {
+            text: 'Technology usage'
+        },
+        xAxis: {
+        	categories: [[${surveyMapKeys}]]
+        },
+        yAxis: {
+            title: {
+                text: 'Usage [%]'
+            }
+        },
+        series: [ {
+        	name: 'Tehnologije',
+            data: [[${surveyMapValues}]]
+        }]
+    });
+});
+
+</script>
+
+</body>
+
+</html>

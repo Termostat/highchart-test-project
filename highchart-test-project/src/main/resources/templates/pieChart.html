@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Pie Graph</title>
+<!-- Removing credits from the plot -->
+<style>
+.highcharts-credits{visibility:hidden !important;}
+</style>
+</head>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+ <div id="container"></div>
+ <script th:inline="javascript">
+ Highcharts.chart('container', {
+	    chart: {
+	        plotBackgroundColor: null,
+	        plotBorderWidth: null,
+	        plotShadow: false,
+	        type: 'pie'
+	    },
+	    title: {
+	        text: 'Results'
+	    },
+	    tooltip: {
+	        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	    },
+	    accessibility: {
+	        point: {
+	            valueSuffix: '%'
+	        }
+	    },
+	    plotOptions: {
+	        pie: {
+	            allowPointSelect: true,
+	            cursor: 'pointer',
+	            dataLabels: {
+	                enabled: true,
+	                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+	            }
+	        }
+	    },
+	    series: [{
+	        name: 'Share',
+	        colorByPoint: true,
+	        data: [{
+	            name: 'Sucess',
+	            y: [[${pass}]],
+	            sliced: true,
+	            selected: true
+	        }, {
+	            name: 'Fail',
+	            y: [[${fail}]]
+	        }, {
+
+	        }]
+	    }]
+	});
+ </script>
+</body>
+</html>
